@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import datetime
-
+import json
 def toriScraper(productName="kirja", priceMin=5, priceMax=100, etäisyys=0, kaupunki=""):
     runWait=5
 
@@ -57,8 +57,6 @@ def toriScraper(productName="kirja", priceMin=5, priceMax=100, etäisyys=0, kaup
     #    page=requests.get(f"https://www.tori.fi/recommerce/forsale/search?q={product}&sort=PUBLISHED_DESC")
     #    print(f"https://www.tori.fi/recommerce/forsale/search?q={product}&sort=PUBLISHED_DESC")
 
-    
-
     page=requests.get(f"https://www.tori.fi/recommerce/forsale/search?q={product}&sort=PUBLISHED_DESC")
     print(f"https://www.tori.fi/recommerce/forsale/search?q={product}&sort=PUBLISHED_DESC")
 
@@ -94,7 +92,10 @@ def toriScraper(productName="kirja", priceMin=5, priceMax=100, etäisyys=0, kaup
                     return
             else:
                 if "minuutti" in when:
-                    time=int(when.split(" ")[0])
+                    if "minuutti" in when.split(" ")[0]:
+                        time=1
+                    else:
+                        time=int(when.split(" ")[0])
                     if time>runWait*2:
                         return
                 else:
@@ -108,7 +109,7 @@ def toriScraper(productName="kirja", priceMin=5, priceMax=100, etäisyys=0, kaup
         pages=pages.find('div',attrs={'class':'hidden md:block s-text-link'})
         pages=str(pages).count("Sivu")
         if pages:
-            for whichPage in range (2,900):
+            for whichPage in range (2,50):
 
                 #if givenLocation:
                 #    location=locationsDict[givenLocation]
@@ -128,6 +129,8 @@ def toriScraper(productName="kirja", priceMin=5, priceMax=100, etäisyys=0, kaup
                     announcements=parsedPage.find('div', attrs={'class':'grid grid-cols-2 md:grid-cols-3 grid-flow-row-dense gap-16 items-start sf-result-list mt-16'})
                     sales=announcements.find_all('article')
                     for sale in sales:
+                        if "paalupaikka" in str(sale.find('span', attrs={'class':'absolute top-0 left-0 pointer-events-none badge--positionTL badge--info'})).lower():
+                            continue
                         name=str(sale.find('a')).split("</span>")[-1].replace("</a>","")
                         if "ostetaan" in str(sale.find('div', attrs={'class':'mt-16 flex justify-between sm:mt-8 space-x-12 font-bold whitespace-nowrap'})).split("<span>")[-1].replace("</span>","").replace("</div>","").replace("€","").strip().lower():
                             continue
@@ -151,6 +154,8 @@ def toriScraper(productName="kirja", priceMin=5, priceMax=100, etäisyys=0, kaup
                                 return
                         else:
                             if "minuutti" in when:
+                                if "minuutti" in when.split(" ")[0]:
+                                    time=1
                                 time=int(when.split(" ")[0])
                                 if time>runWait*2:
                                     return
