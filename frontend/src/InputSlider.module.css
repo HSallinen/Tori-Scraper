@@ -1,0 +1,28 @@
+.inputSlider{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid;
+    border-radius: 8px;
+    border-color: gray;
+}
+.name{
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.inputs{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    margin: 10px;
+    gap:15px;
+}
+.slider{
+    width: 500px;
+    margin-right: 20px;
+}
+.numberInput{
+    width: 75px;
+}

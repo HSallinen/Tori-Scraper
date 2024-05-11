@@ -1,0 +1,6 @@
+.cities{
+    display: flex;
+    flex-direction: column;
+    width: 125px;
+    gap: 3px;
+}
