@@ -8,6 +8,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import 'dayjs/locale/fi';
+import makeRequest from './makeRequest'
 function App() {
   const [inputtedItem, setInputtedItem] = useState("")
   const [priceRange, setPriceRange] = useState([50, 100])
@@ -26,7 +27,7 @@ function App() {
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fi">
         <DatePicker />
       </LocalizationProvider>
-      <Button onClick = {()=>{}}>Aloita haku</Button>
+      <Button onClick = {()=>{makeRequest({product: inputtedItem, priceMin: Math.min(...priceRange), priceMax: Math.max(...priceRange), city: city||"PLACEHOLDER", distance, email})}}>Aloita haku</Button>
     </div>
   )
 }
