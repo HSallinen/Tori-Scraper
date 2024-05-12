@@ -1,4 +1,4 @@
-const makeRequest = (requestParameters: {product: string, priceMin: number,priceMax:number, city: string, distance: number, email: string}) => {
+const makeRequest = (requestParameters: {product: string, priceMin: number,priceMax:number, city: string, distance: number, email: string, data: Array<any>}) => {
     fetch('/backend/', {
         method: 'PUT',
         headers: {

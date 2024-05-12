@@ -27,7 +27,7 @@ function App() {
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fi">
         <DatePicker />
       </LocalizationProvider>
-      <Button onClick = {()=>{makeRequest({product: inputtedItem, priceMin: Math.min(...priceRange), priceMax: Math.max(...priceRange), city: city||"PLACEHOLDER", distance, email})}}>Aloita haku</Button>
+      <Button onClick = {()=>{makeRequest({product: inputtedItem, priceMin: Math.min(...priceRange), priceMax: Math.max(...priceRange), city: city||"PLACEHOLDER", distance, email, data: []})}}>Aloita haku</Button>
     </div>
   )
 }
