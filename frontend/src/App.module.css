@@ -7,3 +7,10 @@
     width: 50%;
     gap: 10px;
 }
+.content{
+    border: 1px solid;
+    border-radius: 8px;
+    border-color: gray;
+    margin-bottom: 20px;
+
+}

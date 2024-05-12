@@ -24,7 +24,7 @@ function NumberInput({value, onChange, min}: {value: number, onChange: React.Cha
         )
 }
 function InputSlider(props:inputSliderProps) {
-    const handleChange = (event: Event, newValue: number | number[]) => {
+    const handleChange = (_event: Event, newValue: number | number[]) => {
         props.setValue(newValue as number & number[]);
     };
     const setNumberInputValue = (event: React.ChangeEvent<HTMLInputElement>, id: number) => {
