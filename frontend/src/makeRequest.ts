@@ -1,4 +1,5 @@
 const makeRequest = (requestParameters: {product: string, priceMin: number,priceMax:number, city: string, distance: number, email: string}) => {
+    return new Promise<any[]>((resolve)=>{
     fetch('/backend/', {
         method: 'PUT',
         headers: {
@@ -9,10 +10,12 @@ const makeRequest = (requestParameters: {product: string, priceMin: number,price
     .then(resp => resp.json()) // or, resp.text(), etc
     .then(data => {
         console.log(data); // handle response data
+        resolve([])
     })
     .catch(error => {
         console.error(error);
+        resolve([])
     });
-};
+})};
 
 export default makeRequest

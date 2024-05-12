@@ -15,6 +15,7 @@ function App() {
   const [city, setCity] = useState<string|undefined>()
   const [distance, setDistance] = useState(50)
   const[email, setEmail] = useState("")
+  const [data, setData] = useState<any[]>([])
   return (
     <div className={styles.app}>
       <TextField label="mitä tuotetta haluat etsiä?" value={inputtedItem} onChange={(event) => {setInputtedItem(event.target.value)}} required/>
@@ -27,7 +28,9 @@ function App() {
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fi">
         <DatePicker />
       </LocalizationProvider>
-      <Button onClick = {()=>{makeRequest({product: inputtedItem, priceMin: Math.min(...priceRange), priceMax: Math.max(...priceRange), city: city||"PLACEHOLDER", distance, email})}}>Aloita haku</Button>
+      <Button onClick = {async()=>{setData(await makeRequest({product: inputtedItem, priceMin: Math.min(...priceRange), priceMax: Math.max(...priceRange), city: city||"PLACEHOLDER", distance, email}))}}>Aloita haku</Button>
+      {data.map((item)=> item.isArray() && <div className={styles.content}>{item.map((content:any) => <><Typography>{content}</Typography><br/></>)}</div>)}
+    
     </div>
   )
 }
