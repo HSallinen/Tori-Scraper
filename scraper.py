@@ -63,6 +63,7 @@ def toriScraper(productName, priceMin, priceMax, etäisyys, kaupunki):
     for city in allCities:
         if city[1]<=etäisyys:
             allowedCities.append(city[0].lower())
+    allowedCities.append(kaupunki)
     print(allowedCities)
 
     foundListings=[]
