@@ -10,7 +10,7 @@ import makeRequest from './makeRequest'
 function App() {
   const [inputtedItem, setInputtedItem] = useState("")
   const [priceRange, setPriceRange] = useState([50, 100])
-  const [city, setCity] = useState<string|undefined>()
+  const [city, setCity] = useState("")
   const [distance, setDistance] = useState(50)
   const[email, _setEmail] = useState("")
   const [data, setData] = useState<any[]>([])
