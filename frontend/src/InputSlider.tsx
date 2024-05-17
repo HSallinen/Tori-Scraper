@@ -7,7 +7,7 @@ interface inputSliderProps extends SliderOwnProps{
     value: number|number[]
   
 };
-function NumberInput({value, onChange, min}: {value: number, onChange: React.ChangeEventHandler<HTMLInputElement>, min: number|undefined}) {
+function NumberInput({value, onChange, min, step}: {value: number, onChange: React.ChangeEventHandler<HTMLInputElement>, min: number|undefined, step: number|null|undefined}) {
     return(
         <div className={styles.numberInput}>
             <Input
@@ -15,7 +15,7 @@ function NumberInput({value, onChange, min}: {value: number, onChange: React.Cha
                 size="small"
                 onChange={onChange}
                 inputProps={{
-                    step: 10,
+                    step: step,
                     min: min,
                     type: 'number',
                 }}
@@ -42,12 +42,12 @@ function InputSlider(props:inputSliderProps) {
                     <Slider onChange = {handleChange} {...props}/>
                 </div>
                 {(typeof props.value === "number") && 
-                    <NumberInput value={props.value} onChange={(event)=>{setNumberInputValue(event, 0) }} min={props.min}/>
+                    <NumberInput value={props.value} onChange={(event)=>{setNumberInputValue(event, 0) }} min={props.min} step={props.step}/>
                 }
                 {(typeof props.value !== "number") && <>
-                <NumberInput value={props.value[0]} onChange={(event)=>{setNumberInputValue(event, 0)}} min={props.min}/>
+                <NumberInput value={props.value[0]} onChange={(event)=>{setNumberInputValue(event, 0)}} min={props.min} step={props.step}/>
                 <Typography variant="h3">-</Typography>
-                <NumberInput value={props.value[1]} onChange={(event)=>{setNumberInputValue(event, 1)}} min={props.min}/>
+                <NumberInput value={props.value[1]} onChange={(event)=>{setNumberInputValue(event, 1)}} min={props.min} step={props.step}/>
                 </>}    
             </div>
         </div>
