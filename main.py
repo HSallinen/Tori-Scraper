@@ -25,7 +25,7 @@ class Item(BaseModel):
 
 @app.put("/backend/")
 async def returnSearch(item: Item):
-    item.data=toriScraper(item.product, item.priceMin, item.priceMax, item.distance, item.city)
+    item.data=toriScraper(item.product, item.priceMin, item.priceMax, item.distance, item.city, 0)
 
     return(item)
 
