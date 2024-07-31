@@ -1,7 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import datetime
-import json
 from sanakirja import sanakirja
 def toriScraper(productName, priceMin, priceMax, etäisyys, kaupunki, timeSinceLastCheck):
     # TimeSinceLastCheck=0 means that this is a request made by frontend 
@@ -34,7 +32,7 @@ def toriScraper(productName, priceMin, priceMax, etäisyys, kaupunki, timeSinceL
     foundListings=[]
 
     page=requests.get(f"https://www.tori.fi/recommerce/forsale/search?price_from={priceMin}&price_to={priceMax}&published={latest}&q={product}&sort=PUBLISHED_DESC&trade_type=1{freeIncludedLink}")
-    print(f"https://www.tori.fi/recommerce/forsale/search?price_from={priceMin}&published={latest}&price_to={priceMax}&q={product}&sort=PUBLISHED_DESC&trade_type=1{freeIncludedLink}")
+    print(f"https://www.tori.fi/recommerce/forsale/search?price_from={priceMin}&price_to={priceMax}&published={latest}&q={product}&sort=PUBLISHED_DESC&trade_type=1{freeIncludedLink}")
 
     if page.status_code==200:
         page=page.content
